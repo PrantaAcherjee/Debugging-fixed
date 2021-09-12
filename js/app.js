@@ -1,6 +1,6 @@
 const loadProducts = () => {
   const url = `https://fakestoreapi.com/products`;
-  /* when above this link are not working 
+  /* when above this link is not working i followed below this link:
   const url = `https://raw.githubusercontent.com/biswajitdasme/fakestore/main/db.json?fbclid=IwAR1JaZoZe0AO2XB2gvceBKIb6YvWgpccBetx8pU8xIF9dygCDTc27On_08c`*/
   fetch(url)
     .then((response) => response.json())
@@ -47,12 +47,12 @@ const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = Math.round(total);
+  document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  document.getElementById(id).innerText = parseFloat(value).toFixed(2);
 };
 
 // update delivery charge and total Tax
