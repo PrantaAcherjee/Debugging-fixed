@@ -1,5 +1,7 @@
 const loadProducts = () => {
   const url = `https://fakestoreapi.com/products`;
+  /* when above this link are not working 
+  const url = `https://raw.githubusercontent.com/biswajitdasme/fakestore/main/db.json?fbclid=IwAR1JaZoZe0AO2XB2gvceBKIb6YvWgpccBetx8pU8xIF9dygCDTc27On_08c`*/
   fetch(url)
     .then((response) => response.json())
     .then((data) => showProducts(data));
@@ -30,7 +32,6 @@ let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
   updatePrice("price", price);
-
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
 };
@@ -69,6 +70,7 @@ const updateTaxAndCharge = () => {
     setInnerText("delivery-charge", 60);
     setInnerText("total-tax", priceConverted * 0.4);
   }
+  updateTotal()
 };
 
 //grandTotal update function
@@ -77,4 +79,5 @@ const updateTotal = () => {
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal;
+
 };
