@@ -1,6 +1,6 @@
 const loadProducts = () => {
   const url = `https://fakestoreapi.com/products`;
-  /* when above this link is not working i followed below this link:
+  /* when above this link was not working i followed below this link:
   const url = `https://raw.githubusercontent.com/biswajitdasme/fakestore/main/db.json?fbclid=IwAR1JaZoZe0AO2XB2gvceBKIb6YvWgpccBetx8pU8xIF9dygCDTc27On_08c`*/
   fetch(url)
     .then((response) => response.json())
@@ -12,7 +12,6 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    const image = product.images;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -21,12 +20,14 @@ const showProducts = (products) => {
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
+      <h4>Ratings: ${product.rating.rate}</h4>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
+
 };
 let count = 0;
 const addToCart = (id, price) => {
@@ -42,7 +43,7 @@ const getInputValue = (id) => {
   return converted;
 };
 
-// main price update function
+// Main price update function are given below
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
@@ -50,12 +51,12 @@ const updatePrice = (id, value) => {
   document.getElementById(id).innerText = total.toFixed(2);
 };
 
-// set innerText function
+// set innerText function are given below
 const setInnerText = (id, value) => {
   document.getElementById(id).innerText = parseFloat(value).toFixed(2);
 };
 
-// update delivery charge and total Tax
+// update delivery charge and total Taxation in different case
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
   if (priceConverted > 200) {
@@ -73,7 +74,7 @@ const updateTaxAndCharge = () => {
   updateTotal()
 };
 
-//grandTotal update function
+//GrandTotal update function
 const updateTotal = () => {
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
